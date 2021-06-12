@@ -18,9 +18,9 @@ public class DiceController {
     public String diceGuess(@PathVariable int guess, Model model) {
         String result;
 
-        int random = (int) Math.random() * 6 + 1;
+        int random = (int) Math.ceil(Math.random() * 6);
 
-        if (guess == random) {
+        if (random == guess) {
             result = "your guess is correct!";
         } else {
             result = "Your guess is incorrect";
