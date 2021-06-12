@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class PostController {
 
-//    @RequestMapping("/post")
-//    @ResponseBody
-//    public String posts()
+    @RequestMapping("/post")
+    @ResponseBody
+    public String posts()
 
 }
