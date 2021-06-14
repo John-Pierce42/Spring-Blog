@@ -3,6 +3,7 @@ package com.codeup.springblog;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="posts")
@@ -21,6 +22,9 @@ public class Post {
 
     @OneToOne
     private User owner;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
+    private List<PostImage> images;
 
 
     public Post(){};
@@ -77,5 +81,13 @@ public class Post {
 
     public void setOwner(User owner) {
         this.owner = owner;
+    }
+
+    public List<PostImage> getImages() {
+        return images;
+    }
+
+    public void setImages(List<PostImage> images) {
+        this.images = images;
     }
 }

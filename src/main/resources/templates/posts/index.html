@@ -19,10 +19,10 @@
         <button>Save changes</button>
     </form>
 
-    <form th:action="@{/posts/{id}/delete(id=${post.getId()})}" th:method="POST">
+    <form th:action="@{|/post/${post.id}/delete|}" th:method="POST">
         <button class="btn btn-danger">Delete</button>
     </form>
-
+    <span th:text="${post.id}"></span>
 </div>
 
 

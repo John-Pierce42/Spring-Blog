@@ -7,12 +7,16 @@
 <nav th:replace="partials/nav :: navbar"></nav>
 
 
-<div th:each="post : ${posts}">
+
     <h3 th:text="${post.getTitle()}"></h3>
     <p th:text="${post.body}" />
-    <h6 th:text="${post.owner}"></h6>
+
+<div th:each="img : ${post.images}">
+<img th:src="${img.path}" alt="">
 </div>
 
+<h6 th:text="${post.getOwner().getUserName()}"></h6>
+<h6 th:text="${post.owner.email}"></h6>
 </body>
 
 </html>

@@ -25,17 +25,17 @@ public class PostController {
     @GetMapping("/posts")
     public String posts(Model model){
 
-        ArrayList<Post> posts = new ArrayList<>();
-        Post post = new Post("hello1","hello1");
-        Post post2 = new Post("hello2","hello2");
-        Post post3 = new Post("hello3","hello3");
-        posts.add(post);
-        posts.add(post2);
-        posts.add(post3);
-        model.addAttribute("posts",posts);
+//        ArrayList<Post> posts = new ArrayList<>();
+//        Post post = new Post("hello1","hello1");
+//        Post post2 = new Post("hello2","hello2");
+//        Post post3 = new Post("hello3","hello3");
+//        posts.add(post);
+//        posts.add(post2);
+//        posts.add(post3);
+//        model.addAttribute("posts",posts);
 
+        model.addAttribute("posts", postDao.findAll());
 
-//        model.addAttribute("posts", postDao.findAll());
     return "posts/index";
     };
 
