@@ -1,14 +1,28 @@
 package com.codeup.springblog;
 
-public class post {
+import org.springframework.data.jpa.repository.JpaRepository;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="posts")
+public class Post {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Column(nullable = false, length = 100)
     private String title;
+
+
+    @Column(nullable = false)
     private String body;
 
-    public post(){};
+    public Post(){};
 
 
-    public post(String title, String body){
+    public Post(String title, String body){
         this.title = title;
         this.body = body;
     };

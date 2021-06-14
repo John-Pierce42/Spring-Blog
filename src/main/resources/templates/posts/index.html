@@ -1,9 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials :: header"></head>
+<head th:replace="partials/header :: header"></head>
 
 <body>
-<nav th:replace="partials :: nav"></nav>
+<nav th:replace="partials/nav :: nav"></nav>
+
+<p th:text="${name.title}"></p>
+
+<form action="/index" method="post">
+    <input type="text" name="edit"  />
+    <button>Edit</button>
+</form>
+
+<form action="/index" method="post">
+    <input type="text" name="delete"  />
+    <button>Delete</button>
+</form>
 
 </body>
 </html>
