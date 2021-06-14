@@ -10,51 +10,68 @@ import java.util.ArrayList;
 public class PostController {
 
 
-//    private final PostRepository postDao;
-//
-//    public PostController(PostRepository postDao){
-//        this.postDao = postDao;
-//    }
+    private final PostRepository postDao;
+
+    private final UserRepository userDao;
+
+    public PostController(PostRepository postDao, UserRepository userDao){
+        this.postDao = postDao;
+        this.userDao = userDao;
+    }
+
+
 
 
     @GetMapping("/posts")
     public String posts(Model model){
-//model.addAttribute("post", "hello how are you");
-//      model.add("post", post);
-        Post post = new Post("john", "pierce");
-model.addAttribute("name", post);
-        return "posts/index";
+
+        ArrayList<Post> posts = new ArrayList<>();
+        Post post = new Post("hello1","hello1");
+        Post post2 = new Post("hello2","hello2");
+        Post post3 = new Post("hello3","hello3");
+        posts.add(post);
+        posts.add(post2);
+        posts.add(post3);
+        model.addAttribute("posts",posts);
+
+
+//        model.addAttribute("posts", postDao.findAll());
+    return "posts/index";
     };
-//
-//    @GetMapping("/hello/{id}")
-//    public String postId(@PathVariable long id, Model model){
-//        model.addAttribute("id", id);
-//        return  "posts/show";
-//    };
-//
-//    @GetMapping("/posts/create")
-//    public String getPostCreate(){
-//        return "posts/create";
-//    }
-//
-//    @PostMapping("/posts/create")
-//    public String postCreate(){
-//        return "posts/create";
-//    }
-//
-//
-//    @PostMapping("/index")
-//    public String postEdit(@RequestParam(name = "edit") Model model){
-//        model.addAttribute("edit");
-//        return "/index";
-//    }
-//
-//    @PostMapping("/index")
-//    public String postDelete(@RequestParam(name = "delete") Model model){
-//        model.addAttribute("delete");
-//        return "/index";
-//    }
-//
+
+    @GetMapping("/post/{id}")
+    public String postId(@PathVariable long id, Model model){
+        model.addAttribute("id", id);
+        model.addAttribute("post", postDao.getById(id));
+        model.addAttribute("user", userDao.getById(id));
+        return  "posts/show";
+    };
+
+    @GetMapping("/posts/create")
+    public String getPostCreate(){
+        return "posts/create";
+    }
+
+    @PostMapping("/posts/create")
+    public String postCreate(){
+        return "posts/create";
+    }
+
+
+    @PostMapping("/post/{id}/edit")
+    public String postEdit(@PathVariable long id, Model model){
+        model.addAttribute("");
+        return "posts/index";
+    }
+
+    @PostMapping("/post/{id}/delete")
+    public String delete(@PathVariable long id){
+        postDao.deleteById(id);
+        return "redirect:/posts";
+    }
+
+
+
 
 
 
