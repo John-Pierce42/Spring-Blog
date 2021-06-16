@@ -45,9 +45,9 @@ public class PostController {
 
     @GetMapping("/post/{id}")
     public String postId(@PathVariable long id, Model model){
-        model.addAttribute("id", id);
         model.addAttribute("post", postDao.getById(id));
-        model.addAttribute("user", userDao.getById(id));
+//        model.addAttribute("post", postDao.getById(id));
+//        model.addAttribute("user", userDao.getById(id));
         return  "posts/show";
     };
 
@@ -58,15 +58,20 @@ public class PostController {
     }
 
     @PostMapping("/posts/create")
-    public String postCreate(){
-        return "posts/create";
+    public String postCreate(@ModelAttribute Post post){
+        User user = userDao.getById(1L);
+        post.setOwner(user);
+
+        postDao.save(post);
+
+        return "redirect:/post/" + post.getId();
     }
 
 
     @PostMapping("/post/{id}/edit")
     public String postEdit(@PathVariable long id, Model model){
-        model.addAttribute("");
-        return "posts/index";
+
+        return "posts/edit";
     }
 
     @PostMapping("/post/{id}/delete")

@@ -8,14 +8,14 @@
 
 
 
-    <h3 th:text="${post.getTitle()}"></h3>
+    <h3 th:text="${post.title}"></h3>
     <p th:text="${post.body}" />
 
 <div th:each="img : ${post.images}">
 <img th:src="${img.path}" alt="">
 </div>
 
-<h6 th:text="${post.getOwner().getUserName()}"></h6>
+<h6 th:text="${post.owner.userName}"></h6>
 <h6 th:text="${post.owner.email}"></h6>
 </body>
 
