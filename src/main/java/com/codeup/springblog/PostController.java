@@ -1,5 +1,6 @@
 package com.codeup.springblog;
 
+import com.codeup.springblog.Service.EmailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,9 +15,12 @@ public class PostController {
 
     private final UserRepository userDao;
 
-    public PostController(PostRepository postDao, UserRepository userDao){
+    private final EmailService emailService;
+
+    public PostController(PostRepository postDao, UserRepository userDao, EmailService emailService){
         this.postDao = postDao;
         this.userDao = userDao;
+        this.emailService = emailService;
     }
 
 
@@ -48,7 +52,8 @@ public class PostController {
     };
 
     @GetMapping("/posts/create")
-    public String getPostCreate(){
+    public String getPostCreate(Model model){
+        model.addAttribute("post", new Post());
         return "posts/create";
     }
 
