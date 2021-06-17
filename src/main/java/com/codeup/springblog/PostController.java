@@ -63,7 +63,7 @@ public class PostController {
         post.setOwner(user);
 
         postDao.save(post);
-
+        emailService.prepareAndSend(post, "new post created", "You created a new post!");
         return "redirect:/post/" + post.getId();
     }
 
