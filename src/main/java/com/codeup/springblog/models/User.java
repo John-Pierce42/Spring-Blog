@@ -1,4 +1,4 @@
-package com.codeup.springblog;
+package com.codeup.springblog.models;
 
 import javax.persistence.*;
 
@@ -9,7 +9,7 @@ public class User {
     private long id;
 
     @Column(nullable = false, length = 100)
-    private String userName;
+    private String username;
 
     @Column(nullable = false)
     private String email;
@@ -21,25 +21,35 @@ public class User {
     public User(){};
 
 //    insert constructor
-    public User(String userName, String email, String password){
-        this.userName = userName;
+    public User(String username, String email, String password){
+        this.username = username;
         this.email = email;
         this.password = password;
 
     }
 //    update constructor
-    public User(long id,String userName, String email, String password){
-        this.userName = userName;
+    public User(long id,String username, String email, String password){
+        this.username = username;
         this.email = email;
         this.password = password;
 }
+
+
+
+    public User(User copy) {
+        id = copy.id; // This line is SUPER important! Many things won't work if it's absent
+        email = copy.email;
+        username = copy.username;
+        password = copy.password;
+    }
+
 
     public long getId() {
         return id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
     public String getEmail() {
@@ -54,8 +64,8 @@ public class User {
         this.id = id;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setEmail(String email) {

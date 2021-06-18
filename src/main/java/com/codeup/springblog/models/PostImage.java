@@ -1,6 +1,4 @@
-package com.codeup.springblog;
-
-import com.codeup.springblog.Post;
+package com.codeup.springblog.models;
 
 import javax.persistence.*;
 
